@@ -1,0 +1,35 @@
+## 文件结构
+
+- data: 数据文件夹
+  - demo-inputs30d.json: 被转化为30维词向量的demo输入数据集
+  - demo-inputs300d.json: 被转化为300维词向量的demo输入数据集
+  - demo-labels.json: demo标签数据集
+  - sinanews.demo: 原始demo数据集
+  - sinanews.test: 原始test数据集
+  - sinanews.train: 原始train数据集
+  - test-labels.json: test标签数据集
+  - test-inputs30d.json: 被转化为30维词向量的test输入数据集，由于文件过大，此处不直接提供，可下载于[清华云盘](https://cloud.tsinghua.edu.cn/d/cbf6d193d0a44b70af66/)，也可通过`data.py`生成。
+  - test-inputs300d.json: 被转化为300维词向量的test输入数据集，由于文件过大，此处不直接提供，可下载于[清华云盘](https://cloud.tsinghua.edu.cn/d/cbf6d193d0a44b70af66/)，也可通过`data.py`生成。
+- model: 模型文件夹
+  - cnn.pth: CNN模型
+  - rnn.pth: BiRNN模型
+- src: 源代码文件夹
+  - data.py: 用于从原始数据集中生成处理过的训练数据和标注数据。
+    - 使用方法为：`python3 ./src/data.py`
+    - 由于并未提供训练数据文件，如果需要训练模型，请先运行此程序生成训练数据。
+  - demo.py：查看模型在demo数据上得到的分类输出。（默认为cnn模型）
+    - 使用方法为：`python3 ./src/demo.py`
+  - testCNN.py: 计算CNN模型的评价指标。
+    - 使用方法为：`python3 ./src/testCNN.py`
+    - 需要`test-inputs300d.json`
+  - testRNN.py: 计算RNN模型的评价指标。
+    - 使用方法为：`python3 ./src/testRNN.py`
+    - 需要`test-inputs30d.json`
+  - trainCNN.py: 训练CNN模型。
+    - 使用方法为：`python3 ./src/trainCNN.py`
+    - 模型会保存在`./model/i.pth`，其中$i$表示这是训练$i$个epoch之后得到模型。
+    - 需要使用`data.py`从原始数据中生成`./data/train-labels.json`和`./data/train-inputs300d.json`后方能开始训练。
+  - trainRNN.py: 训练RNN模型。
+    - 使用方法为：`python3 ./src/trainRNN.py`
+    - 模型会保存在`./model/i.pth`，其中$i$表示这是训练$i$个epoch之后得到模型。
+    - 需要对`data.py`略作更改，并使用其从原始数据中生成`./data/train-labels.json`和`./data/train-inputs30d.json`后方能开始训练。
