@@ -1,5 +1,3 @@
-## 文件结构
-
 - data: 数据文件夹
   - demo-inputs30d.json: 被转化为30维词向量的demo输入数据集
   - demo-inputs300d.json: 被转化为300维词向量的demo输入数据集
